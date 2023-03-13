@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -tl 
+find /sample_directory -type f -printf "%t - %p\n" | sort -n
