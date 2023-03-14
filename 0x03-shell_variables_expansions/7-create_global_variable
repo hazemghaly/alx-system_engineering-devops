@@ -1,2 +1,2 @@
 #!/bin/bash
-export Best |  Best = School | echo $BEST
+echo " $(($BEST School))"
