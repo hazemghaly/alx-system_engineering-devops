@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# display fils contant
-for f in *; do [ -f "$f" ] && echo "$f" | cut -d '-' -f2; done;
