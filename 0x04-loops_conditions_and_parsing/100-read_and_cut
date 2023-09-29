@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # displays  numbers  with saying luck
 FILENAME="/etc/passwd"
-while IFS=: read -r username userid homedir 
+while IFS=: read -r username password userid groupid comment homedir cmdshell
 do
   echo "$username:$userid:$homedir"
 done < $FILENAME
