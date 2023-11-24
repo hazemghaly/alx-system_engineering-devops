@@ -1,5 +1,7 @@
-# installing flasl 035
-package { 'flask':
-  ensure   => 'installed',
-  provider => 'pip3',
+# non
+python::pip { 'Flask':
+  ensure     => '2.1.0',
+  pkgname    => 'Flask',
+  python     => 'python3',
+  require    => Class['python'],
 }
