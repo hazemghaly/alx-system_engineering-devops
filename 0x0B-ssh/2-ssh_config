@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # connect paswordles
-Host <34.224.3.2>
+Host <100.27.12.93>
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
