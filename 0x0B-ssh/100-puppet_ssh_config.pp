@@ -4,6 +4,6 @@ class ubuntu {
      ensure => present,
      user   => 'ubuntu',
      type   => 'ssh-rsa',
-     key    => ~/.ssh/school,
+     key    => /root/.ssh/school,
    }
 }
