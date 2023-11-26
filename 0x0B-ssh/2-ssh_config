@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-# connect paswordless
-ssh-copy-id -i ~/.ssh/school.pub ubuntu@34.224.3.2
-ssh -v ubuntu@34.224.3.2
+# connect paswordles
+Host <34.224.3.2>
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
