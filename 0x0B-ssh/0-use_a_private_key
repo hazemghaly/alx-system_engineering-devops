@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-ssh-keygen -f ~/.ssh/school
 ssh ubuntu@34.224.3.2
