@@ -1,12 +1,9 @@
 #Puppet
-file { '/home/ubuntu/.ssh/config':
-  ensure  => present,
-  content => @("SSH_CONFIG"
-    100.27.12.93
-      IdentityFile ~/.ssh/school
-      PasswordAuthentication no
-  SSH_CONFIG),
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  mode    => '0600',
+class ubuntu {
+   ssh_authorized_key { 'ubuntu@100.27.12.93':
+     ensure => present,
+     user   => 'ubuntu',
+     type   => 'ssh-rsa',
+     key    => ~/.ssh/school,
+   }
 }
