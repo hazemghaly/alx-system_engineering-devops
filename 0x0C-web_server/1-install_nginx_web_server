@@ -3,7 +3,6 @@
 
 apt-get update
 apt-get install -y nginx
-
 mkdir /etc/nginx/html
 touch /etc/nginx/html/index.html
 echo "Hello World!" >> /etc/nginx/html/index.html
@@ -13,6 +12,6 @@ printf %s "server {
      root        /etc/nginx/html;
      index       index.html index.htm;
 }
-" > /etc/nginx/sites-available/default
+" > /etc/nginx/sites-enable/default
 
 service nginx restart
