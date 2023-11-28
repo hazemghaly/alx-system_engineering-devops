@@ -12,10 +12,11 @@ service { 'nginx':
 }
 
 nginx::resource::server { '${name}.${::default} ${name}':
+    html        => true,
     ensure      => present,
     listen_port => 80,
-    location              => '~ \.html$',
-    index_files           => ['index.html', 'index.htm'],
+    location    => '~ \.html$',
+    index_files => ['index.html', 'index.htm'],
     location    => {
       '/' => {
         try_files => '$uri $uri/ =301',
