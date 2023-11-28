@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Bash script that configures a new Ubuntu machine 
-
 apt-get update
 apt-get install -y nginx
 mkdir /etc/nginx/html
