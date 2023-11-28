@@ -11,5 +11,5 @@ printf %s "server {
     root        /etc/nginx/html;
     index       index.html index.htm index.nginx-debian.html;
 }
-" > /etc/nginx/sites-available/your_domain
+" > /etc/nginx/sites-available/default
 service nginx restart
