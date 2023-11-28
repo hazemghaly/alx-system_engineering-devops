@@ -1,9 +1,7 @@
 #Puppet
-class ubuntu {
-   ssh_authorized_key { 'ubuntu@100.27.12.93':
-     ensure => present,
-     user   => 'ubuntu',
-     type   => 'ssh-rsa',
-     key    => /root/.ssh/school,
-   }
+exec { 'ssh_authorized_key':
+  command => '/usr/bin/ssh ubuntu@100.27.12.93',
+  cwd     => '/etc/ssh',
+  creates => '/etc/ssh/ssh_config',
+  path    => ['/root/.ssh/school.pub', '/root/.ssh/school'],
 }
