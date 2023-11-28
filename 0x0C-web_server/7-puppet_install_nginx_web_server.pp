@@ -3,20 +3,18 @@
 class nginx_server {
   package { 'nginx':
     ensure => installed,
-}
+  }
 
-service { 'nginx':
+  service { 'nginx':
     ensure  => running,
     enable  => true,
     require => Package['nginx'],
-}
+  }
 
-nginx::resource::server { '${name}.${::default} ${name}':
+  nginx::resource::vhost { "${345269-web-01}":
     html        => true,
     ensure      => present,
     listen_port => 80,
-    location    => '~ \.html$',
-    index_files => ['index.html', 'index.htm'],
     location    => {
       '/' => {
         try_files => '$uri $uri/ =301',
@@ -25,5 +23,8 @@ nginx::resource::server { '${name}.${::default} ${name}':
         rewrite => '^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent',
       },
     },
+    index_files => ['index.html', 'index.htm'],
   }
 }
+
+include nginx_server
