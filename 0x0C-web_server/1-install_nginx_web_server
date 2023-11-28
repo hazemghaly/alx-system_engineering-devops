@@ -12,5 +12,4 @@ printf %s "server {
      index       index.html;
 }
 " > /etc/nginx/sites-enabled/default
-
 service nginx restart
