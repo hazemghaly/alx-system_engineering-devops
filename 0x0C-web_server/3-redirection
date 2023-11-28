@@ -12,6 +12,7 @@ printf %s "server {
     index       index.html index.htm index.nginx-debian.html;
     location /redirect {
         try_files $uri $uri/ =301;
+        return 301 https://example.com/new-location;
     }
 }
 " > /etc/nginx/sites-available/default
