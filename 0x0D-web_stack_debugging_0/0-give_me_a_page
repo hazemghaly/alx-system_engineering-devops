@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#docker file 
+docker run -d --name docker-apache -p 80:80 -d httpd
