@@ -5,7 +5,7 @@ apt-get install -y nginx
 mkdir /etc/nginx/html
 touch /etc/nginx/html/index.html
 echo "Hello World!" > /etc/nginx/html/index.html
-printf %s "server {
+printf "Hello World!" "server {
      listen      80;
      listen      [::]:80;
      root        /etc/nginx/html;
