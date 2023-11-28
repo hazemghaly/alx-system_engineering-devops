@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 #docker file 
-docker run -d --name docker-apache -p 80:80 -d httpd
+echo "ServerName localhost" >> /etc/apache2.conf
+service apache2 start
