@@ -3,11 +3,9 @@
 apt-get -y update
 apt-get -y install nginx
 mkdir /etc/nginx/html
-touch /etc/nginx/html/index.html
-echo "Hello World!" > /etc/nginx/html/index.html
-touch /etc/nginx/html/error404.html
-echo "Ceci n'est pas une page" > /etc/nginx/html/error404.html
-printf %s "server {
+echo "Hello World!" >> /etc/nginx/html/index.html
+echo "Ceci n'est pas une page" >> /etc/nginx/html/error404.html
+echo "server {
     listen      80;
     listen      [::]:80;
     root        /etc/nginx/html;
