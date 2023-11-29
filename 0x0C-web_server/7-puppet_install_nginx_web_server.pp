@@ -1,30 +1,21 @@
 #PUPET
 #file of PUPET
-class nginx_server {
-  package { 'nginx':
-    ensure => installed,
-  }
-
-  service { 'nginx':
-    ensure  => running,
-    enable  => true,
-    require => Package['nginx'],
-  }
-
-  nginx::resource::vhost { "${345269-web-01}":
-    html        => true,
-    ensure      => present,
-    listen_port => 80,
-    location    => {
-      '/' => {
-        try_files => '$uri $uri/ =301',
-      },
-      '/redirect_me' => {
-        rewrite => '^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent',
-      },
-    },
-    index_files => ['index.html', 'index.htm'],
-  }
+package { 'nginx':
+  ensure => installed,
 }
 
-include nginx_server
+file_line { 'install':
+  ensure => 'present',
+  path   => '/etc/nginx/sites-enabled/default',
+  after  => 'listen 80 default_server;',
+  line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
+}
+
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
+}
+
+service { 'nginx':
+  ensure  => running,
+  require => Package['nginx'],
+}
