@@ -4,8 +4,11 @@ file { '/etc/ssh/ssh_config':
   ensure  => present,
 }
 
-exec { 'ssh ubuntu@100.27.12.93':
+exec { 'ssh_command':
+  command => '/usr/bin/ssh',
+  user    => 'ubuntu',
   cwd     => '/var/tmp',
   creates => '/var/tmp/myfile',
   path    => ['/etc/ssh/ssh_config'],
+  require => File['/etc/ssh/ssh_config'],
 }
