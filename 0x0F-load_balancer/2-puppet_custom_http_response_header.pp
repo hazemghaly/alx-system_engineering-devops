@@ -9,7 +9,7 @@ file_line { 'install':
   path   => '/etc/nginx/sites-enabled/default',
   after  => 'listen 80 default_server;',
   line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
-  line   => 'http {\\n\\tadd_header X-Served-By \"$HOSTNAME\";',
+  line   => 'http {\n\tadd_header X-Served-By \"${hostname}\";',
 }
 
 file { '/var/www/html/index.html':
