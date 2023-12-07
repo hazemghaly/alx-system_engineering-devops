@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 # display subdomains.
-if [ "$#" -eq 2 ]; then
-    handle_single_domain "$1" "$2"
-elif [ "$#" -eq 1 ]; then
-    handle_multiple_domains "$1"
-else
-    echo "Usage: $0 [domain]"
-    exit 1
-fi
-
 handle_single_domain() {
     URL="$2.$1"
     IP=$(dig "$URL" +short)
@@ -25,3 +16,12 @@ handle_multiple_domains() {
         handle_single_domain "$1" "$DOMAIN"
     done
 }
+
+if [ "$#" -eq 2 ]; then
+    handle_single_domain "$1" "$2"
+elif [ "$#" -eq 1 ]; then
+    handle_multiple_domains "$1"
+else
+    echo "Usage: $0 [domain]"
+    exit 1
+fi
