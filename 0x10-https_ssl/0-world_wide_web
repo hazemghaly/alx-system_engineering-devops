@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# display subdomains.
+if [ "$#" -eq 2 ]; then
+    handle_single_domain "$1" "$2"
+elif [ "$#" -eq 1 ]; then
+    handle_multiple_domains "$1"
+else
+    echo "Usage: $0 [domain]"
+    exit 1
+fi
+
+handle_single_domain() {
+    URL="$2.$1"
+    IP=$(dig "$URL" +short)
+    RECORDTYPE=$(dig "$URL" | awk '/ANSWER SECTION:/ {getline; print $4}')
+    if [ -n "$IP" ]; then
+        echo "The subdomain $2 is a $RECORDTYPE record and points to $IP"
+    else
+        echo "Unable to resolve subdomain $2 for domain $1"
+    fi
+}
+
+handle_multiple_domains() {
+    for DOMAIN in 'www' 'lb-01' 'web-01' 'web-02'; do
+        handle_single_domain "$1" "$DOMAIN"
+    done
+}
