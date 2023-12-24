@@ -9,7 +9,7 @@ sudo echo "server {
     listen      80;
     server_name _;
     add_header X-Served-By \$HOSTNAME;
-    rewrite ^\/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+    rewrite ^\/redirect_me https://github.com/hazemghaly permanent;
     root        /etc/nginx/html;
     index       index.html;
     location /redirect_me {
