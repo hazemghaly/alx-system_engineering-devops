@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Bash script that configures a new Ubuntu machine 
-apt-get -y update
-apt-get -y install nginx
-mkdir /etc/nginx/html
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
 echo "Hello World!" >> /etc/nginx/html/index.html
 echo "Ceci n'est pas une page" >> /etc/nginx/html/error404.html
 echo "server {
