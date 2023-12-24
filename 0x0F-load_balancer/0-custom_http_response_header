@@ -21,5 +21,5 @@ sudo echo "server {
         internal;
     }
 }
-" > /etc/nginx/sites-available/default
+" | sudo tee /etc/nginx/sites-available/default
 sudo service nginx restart
