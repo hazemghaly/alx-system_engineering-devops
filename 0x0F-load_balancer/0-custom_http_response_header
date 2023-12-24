@@ -3,9 +3,9 @@
 sudo apt-get update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
-echo "Hello World!" | /etc/nginx/html/index.html
-echo "Ceci n'est pas une page" | /etc/nginx/html/error404.html
-echo "server {
+sudo echo "Hello World!" | /etc/nginx/html/index.html
+sudo echo "Ceci n'est pas une page" | /etc/nginx/html/error404.html
+sudo echo "server {
     listen      80;
     server_name _;
     add_header X-Served-By \$HOSTNAME;
@@ -22,4 +22,4 @@ echo "server {
     }
 }
 " > /etc/nginx/sites-available/default
-service nginx restart
+sudo service nginx restart
