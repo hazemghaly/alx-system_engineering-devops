@@ -4,11 +4,11 @@ sudo apt-get -y update
 sudo apt-get -y install haproxy=2.8.\*
 server_config=\
 "
-frontend  besthor_frontend
+frontend hazem_frontend
         bind *:80
         mode http
-        default_backend besthor_backend
-backend besthor_backend
+        default_backend hazem_backend
+backend hazem_backend
         balance roundrobin
         server 345269-web-02 54.146.89.146:80 check
         server 345269-web-01 100.27.12.93:80 check
