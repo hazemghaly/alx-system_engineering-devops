@@ -34,4 +34,3 @@ service { 'nginx':
 exec {'r':
   command => '/usr/sbin/service nginx start',
 }
->>>>>>> 8c9ca3e5bf9d5c8fec6e6ed969ca3f19dea39353
