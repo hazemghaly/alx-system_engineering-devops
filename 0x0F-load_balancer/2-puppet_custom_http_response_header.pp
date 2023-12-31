@@ -1,6 +1,5 @@
 #PUPET
 #file of PUPET
-export RUBYOPT='-W0'
 exec {'update':
   command => '/usr/bin/apt-get update',
 }
