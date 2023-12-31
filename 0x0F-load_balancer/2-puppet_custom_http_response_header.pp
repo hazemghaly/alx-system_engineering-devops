@@ -5,13 +5,23 @@ exec {'update':
 }
 
 package { 'nginx':
-  ensure => 'present',
+  ensure => installed,
 }
 
-file_line { 'http_header':
-  path  => '/etc/nginx/nginx.conf',
-  match => 'http {',
+file_line { 'install':
+  ensure => 'present',
+  path   => '/etc/nginx/sites-enabled/default',
+  after  => 'listen 80 default_server;',
+  line   => 'rewrite ^/redirect_me https://github.com/hazemghaly permanent;',
   line  => "http {\n\tadd_header X-Served-By \"${hostname}\";",
+}
+
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
+}
+
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
 }
 
 service { 'nginx':
@@ -22,5 +32,3 @@ service { 'nginx':
 exec {'r':
   command => '/usr/sbin/service nginx start',
 }
-
-
