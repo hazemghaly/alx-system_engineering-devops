@@ -1,6 +1,6 @@
-#PUPET
-#file of PUPET
-exec {'update':
+# PUPPET
+# file of PUPPET
+exec { 'update':
   command => '/usr/bin/apt-get update',
 }
 
@@ -8,18 +8,16 @@ package { 'nginx':
   ensure => installed,
 }
 
-file_line { 'install':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-enabled/default',
-  after  => 'listen 80 default_server;',
-  line   => [
-    'rewrite ^/redirect_me https://github.com/hazemghaly permanent;',
-    'http {\n\tadd_header X-Served-By "${hostname}";',
-  ],
-}
+class { 'stdlib': }
 
-file { '/var/www/html/index.html':
-  content => 'Hello World!',
+augeas { 'nginx_config':
+  context => '/files/etc/nginx/sites-enabled/default',
+  changes => [
+    'set listen[. = "80"]',
+    'set server[. = "listen 80 default_server;"]/rewrite',
+    'set server[. = "listen 80 default_server;"]/rewrite[1] ^/redirect_me https://github.com/hazemghaly permanent',
+    'set server[. = "listen 80 default_server;"]/http[. = "add_header X-Served-By \"${hostname}\";"]',
+  ],
 }
 
 file { '/var/www/html/index.html':
@@ -31,6 +29,7 @@ service { 'nginx':
   require => Package['nginx'],
 }
 
-exec {'r':
-  command => '/usr/sbin/service nginx start',
+exec { 'nginx_restart':
+  command => '/usr/sbin/service nginx restart',
+  subscribe => Augeas['nginx_config'],
 }
