@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #config a new Ubuntu machine nginx
-sudo apt purge -y haproxy
 sudo apt-get -y update
+sudo apt-get -y upgrade
 sudo apt-get -y install haproxy
 #echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 echo "frontend hazem_frontend
