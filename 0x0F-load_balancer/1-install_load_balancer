@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #config a new Ubuntu machine nginx
-sudo apt-get -y pruge haproxy
+sudo apt purge -y haproxy
 sudo apt-get -y upgrade
 sudo apt-get -y install haproxy=2.8.\*
 echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
