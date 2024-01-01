@@ -1,16 +1,35 @@
 # PUPPET
 # file of PUPPET
-class { 'nginx':
-  manage_repo => true,
+exec { 'update':
+  command => '/usr/bin/apt-get update',
 }
 
-nginx::resource::server { 'example.com':
-  listen_port => '80',
-  server_name => 'example.com',
-  location    => {
-    '/' => {
-      'proxy_pass' => 'http://backend',
-      'proxy_set_header' => 'X-Served-By $hostname',
-    },
-  },
+package { 'nginx':
+  ensure => installed,
+}
+
+class { 'stdlib': }
+
+augeas { 'nginx_config':
+  context => '/files/etc/nginx/sites-enabled/default',
+  changes => [
+    'set listen[. = "80"]',
+    'set server[. = "listen 80 default_server;"]/rewrite',
+    'set server[. = "listen 80 default_server;"]/rewrite[1] ^/redirect_me https://github.com/hazemghaly permanent',
+    'set server[. = "listen 80 default_server;"]/http[. = "add_header X-Served-By \"${hostname}\";"]',
+  ],
+}
+
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
+}
+
+service { 'nginx':
+  ensure  => running,
+  require => Package['nginx'],
+}
+
+exec { 'nginx_restart':
+  command => '/usr/sbin/service nginx restart',
+  subscribe => Augeas['nginx_config'],
 }
