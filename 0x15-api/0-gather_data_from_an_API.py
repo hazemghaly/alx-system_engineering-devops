@@ -35,4 +35,3 @@ if __name__ == "__main__":
     for NUMBER_OF_DONE_TASKS in json_req:
         if NUMBER_OF_DONE_TASKS['completed']:
             print("\t " + NUMBER_OF_DONE_TASKS.get('title'))
-
