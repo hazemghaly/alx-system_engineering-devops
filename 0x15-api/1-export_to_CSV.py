@@ -25,7 +25,8 @@ if __name__ == "__main__":
             TOTAL_NUMBER_OF_TASKS += 1
     # Example.csv gets created in the current working directory
     with open(ID + ".csv", "w", newline='') as csvfile:
-        my_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
+        my_writer = csv.writer(
+            csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
         for i in json_req:
             my_writer.writerow(
                 [ID, EMPLOYEE_NAME, i.get('completed'), i.get('title')])
