@@ -1,4 +1,4 @@
-#!/EMPLOYEE_NAME/bin/python3
+#!/usr/bin/python3
 """
 A Script that, uses this REST API, for a given employee ID
 , returns list progress
