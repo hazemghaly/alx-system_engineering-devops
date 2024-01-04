@@ -10,20 +10,17 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    users = requests.get("https://jsonplaceholder.typicode.com/users")
-    users = users.json()
-    todos = requests.get('https://jsonplaceholder.typicode.com/todos')
-    todos = todos.json()
-    todoAll = {}
-
-    for user in users:
-        taskList = []
+    USER = (requests.get("https://jsonplaceholder.typicode.com/users")).json()
+    todos = (requests.get('https://jsonplaceholder.typicode.com/todos')).json()
+    TODO = {}
+    for user in USER:
+        TOTAL_NUMBER_OF_TASKS = []
         for task in todos:
             if task.get('userId') == user.get('id'):
                 taskDict = {"username": user.get('username'),
                             "task": task.get('title'),
                             "completed": task.get('completed')}
-                taskList.append(taskDict)
-        todoAll[user.get('id')] = taskList
+                TOTAL_NUMBER_OF_TASKS.append(taskDict)
+        TODO[user.get('id')] = TOTAL_NUMBER_OF_TASKS
     with open('todo_all_employees.json', mode='w') as f:
-        json.dump(todoAll, f)
+        json.dump(TODO, f)
