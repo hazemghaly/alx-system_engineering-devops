@@ -14,10 +14,13 @@ def number_of_subscribers(subreddit):
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()  # errors check
-        if response.is_redirect:
+        if response.status_code == 302:
             return (0)
         data = response.json()
-        count = data['data']['subscribers']
-        return count
+        if 'data' in data and 'subscribers' in data['data']:
+            count = data['data']['subscribers']
+            return count
+        else:
+            return 0
     except Exception as e:
         return (0)
