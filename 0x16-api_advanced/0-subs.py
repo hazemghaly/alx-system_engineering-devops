@@ -13,9 +13,9 @@ def number_of_subscribers(subreddit):
     headers = {'User-Agent': 'YourAppName/1.0'}
     try:
         response = requests.get(url, headers=headers)
-        #response.raise_for_status()  # errors check
+        response.raise_for_status()  # errors check
         if response.is_redirect:
-            return None
+            return (0)
         data = response.json()
         count = data['data']['subscribers']
         return count
