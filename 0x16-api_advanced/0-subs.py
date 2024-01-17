@@ -5,6 +5,8 @@ API and returns the number of subscribers
 """
 
 import requests
+import sys
+import time
 
 
 def number_of_subscribers(subreddit):
