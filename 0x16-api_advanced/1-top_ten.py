@@ -9,7 +9,7 @@ import requests
 
 def top_ten(subreddit):
     """a function that queries the Reddit"""
-    url = f'https://www.reddit.com/r/{subreddit}/hot/.json'
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {
         "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
     }
