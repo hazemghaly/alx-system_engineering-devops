@@ -12,10 +12,8 @@ import time
 def number_of_subscribers(subreddit):
     """a function that queries the Reddit"""
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
-    headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-    }
-    response = requests.get(url, headers=headers, allow_redirects=False)
+    user_agent = {'User-Agent': 'api_advanced-project'}
+    response = requests.get(url, headers=user_agent, allow_redirects=False)
     response.raise_for_status()
     time.sleep(2)
     if response.status_code == 404:
