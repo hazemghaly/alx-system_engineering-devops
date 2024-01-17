@@ -12,7 +12,6 @@ def number_of_subscribers(subreddit):
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
     user_agent = {'User-Agent': 'api_advanced-project'}
     response = requests.get(url, headers=user_agent, allow_redirects=False)
-    time.sleep(2)
     if response.status_code == 404:
         return 0
     data = response.json()
