@@ -12,15 +12,18 @@ def number_of_subscribers(subreddit):
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
     headers = {'User-Agent': 'YourAppName/1.0'}
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, allow_redirects=False)
         response.raise_for_status()  # errors check
-        if response.status_code == 302:
-            return (0)
-        data = response.json()
+        if response.is_redirect:
+            return 0
+        try:
+            data = response.json()
+        except ValueError as e:
+            return 0
         if 'data' in data and 'subscribers' in data['data']:
             count = data['data']['subscribers']
             return count
         else:
             return 0
-    except requests.exceptions.RequestException as e:
+    except Exception as e:
         return (0)
