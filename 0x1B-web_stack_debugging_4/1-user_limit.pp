@@ -9,7 +9,7 @@
 #real-time priority              (-r) 0
 #stack size              (kbytes, -s) 8192
 exec { 'hard ':
-    command => 'sed -i \'s/holberton hard nofile 15/holberton hard nofile 65536/g\' /etc/security/limits.conf',
+    command => 'sed -i \'s/holberton hard nofile 5/holberton hard nofile 65536/g\' /etc/security/limits.conf',
     path    => ['/bin','/usr/bin']
 }
 
